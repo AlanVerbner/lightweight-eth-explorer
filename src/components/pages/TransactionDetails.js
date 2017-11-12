@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import promisify from 'es6-promisify';
 
 import TransactionInfoTable from '../ethereum/TransactionInfoTable';
-import Loading from '../layout/Loading';
+import EthereumEntity from '../layout/EthereumEntity';
 
 class TransactionDetails extends Component {
 
@@ -29,14 +29,24 @@ class TransactionDetails extends Component {
     this.componentWillReceiveProps(this.props)
   }
 
-  render() {
-    if(!this.state.tx) return <Loading />; //FIXME Loading Here needed
+  renderContents() {
     return (
       <div>
         <h2>Transaction Details</h2>
         <TransactionInfoTable tx={this.state.tx} />
       </div>
     )
+  }
+
+  render() {
+    return (
+      <div>
+        <EthereumEntity 
+          entity={this.state.tx}
+          errorMessage={`Transaction ${this.props.match.params.id} was not found`}
+          render={this.renderContents.bind(this)}/>
+      </div>
+    );
   }
 }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import promisify from 'es6-promisify';
 
 import BlockInfoTable from '../ethereum/BlockInfoTable';
-import Loading from '../layout/Loading';
+import EthereumEntity from '../layout/EthereumEntity';
 
 class BlockDetails extends Component {
 
@@ -43,13 +43,22 @@ class BlockDetails extends Component {
     )
   }
 
-  render() {
-    if(!this.state.block) return <Loading />;
+  renderContent() {
     return (
       <div>
-        <h2>Block Details</h2>
         {this.blockNavBar(this.state.block.number, this.state.latestBlockNumber)}
         <BlockInfoTable block={this.state.block} latestBlockNumber={this.state.latestBlockNumber} />
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        <EthereumEntity 
+          entity={this.state.block}
+          errorMessage={`Block ${this.props.match.params.id} was not found`}
+          render={this.renderContent.bind(this)}/>
       </div>
     )
   }

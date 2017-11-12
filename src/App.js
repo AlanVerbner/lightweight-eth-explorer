@@ -4,6 +4,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import 'purecss/build/pure-min.css';
 import 'purecss/build/grids-responsive-min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'pure-extras/css/pure-extras.css';
 import './App.css';
 import Header from './components/layout/Header';
 import Loading from './components/layout/Loading';

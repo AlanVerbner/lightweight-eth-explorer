@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import promisify from 'es6-promisify';
 
 import AccountInfoTable from '../ethereum/AccountInfoTable';
-import Loading from '../layout/Loading';
+import EthereumEntity from '../layout/EthereumEntity';
 
 class AccountDetails extends Component {
 
@@ -39,14 +39,24 @@ class AccountDetails extends Component {
     this.componentWillReceiveProps(this.props)
   }
 
-  render() {
-    if(!this.state.account) return <Loading />;
+  renderContents() {
     return (
       <div>
         <h2>Account Details</h2>
         <AccountInfoTable account={this.state.account}/>
       </div>
     )
+  }
+
+  render() {
+    return (
+      <div>
+        <EthereumEntity 
+          entity={this.state.account}
+          errorMessage={`Account ${this.props.match.params.id} was not found`}
+          render={this.renderContents.bind(this)}/>
+      </div>
+    );
   }
 }
 

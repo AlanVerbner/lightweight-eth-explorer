@@ -5148,6 +5148,10 @@ punycode@^1.2.4, punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+pure-extras@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/pure-extras/-/pure-extras-1.0.0.tgz#37e3cc3590cba850981454cda5db28e27a63871a"
+
 purecss@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/purecss/-/purecss-1.0.0.tgz#3dbcd9e2a7592448a69acb705cce16311bf4b785"
