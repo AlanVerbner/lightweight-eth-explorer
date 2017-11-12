@@ -278,3 +278,7 @@ a.pure-button-primary {
 .pure-alert {
   margin-top: 20px;
 }
+
+.main-container table {
+  width: 100%;
+}
