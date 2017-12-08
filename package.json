@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.2",
-    "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
@@ -25,6 +24,7 @@
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "7.1.0",
     "extract-text-webpack-plugin": "3.0.0",
+    "fetch-inject": "1.9.1",
     "file-loader": "0.11.2",
     "font-awesome": "^4.7.0",
     "fs-extra": "3.0.1",
@@ -44,6 +44,7 @@
     "react-fullscreen": "^0.1.0",
     "react-loading": "1.0.1",
     "react-router-dom": "4.2.2",
+    "solc": "https://github.com/ethereum/solc-js#c2acb51cf46381698f8264567ac86b9322e39349",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
@@ -55,9 +56,10 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "npm run build-solc && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build-solc": "./node_modules/browserify/bin/cmd.js -s 'solc' -e ./node_modules/solc/wrapper.js -o ./src/utils/solidity/solc.js"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -99,5 +101,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "browserify": "^14.5.0"
   }
 }

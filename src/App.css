@@ -282,3 +282,8 @@ a.pure-button-primary {
 .main-container table {
   width: 100%;
 }
+
+.solidity-input {
+  width: 100%;
+  height: 15em;
+}

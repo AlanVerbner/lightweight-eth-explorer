@@ -41,6 +41,9 @@ class Header extends Component {
               <li className="pure-menu-item">
                 <Link className="pure-menu-link" to={`${process.env.PUBLIC_URL}/status`}>Status</Link>
               </li>
+              <li className="pure-menu-item">
+                <Link className="pure-menu-link" to={`${process.env.PUBLIC_URL}/verifyContract`}>Verify Contract</Link>
+              </li>
           </ul>
         </div>
       </div>

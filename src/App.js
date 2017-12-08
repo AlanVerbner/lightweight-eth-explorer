@@ -14,6 +14,7 @@ import BlockDetails from './components/pages/BlockDetails';
 import AccountDetails from './components/pages/AccountDetails';
 import TransactionDetails from './components/pages/TransactionDetails';
 import Status from './components/pages/Status';
+import ContractVerification from './components/pages/ContractVerification';
 import { getStringType, TRANSACTION, ADDRESS, BLOCK } from './utils/search-utils';
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
               <Route path={`${process.env.PUBLIC_URL}/account/:address`} render={(props) => <AccountDetails {...props} web3={web3}/>}/>
               <Route path={`${process.env.PUBLIC_URL}/transaction/:id`} render={(props) => <TransactionDetails {...props} web3={web3}/>}/>
               <Route exact path={`${process.env.PUBLIC_URL}/status`} render={(props) => <Status web3={web3}/>}/>
+              <Route exact path={`${process.env.PUBLIC_URL}/verifyContract`} render={(props) => <ContractVerification web3={web3}/>}/>
             </Switch>
           </div>
         </div>
