@@ -4,7 +4,7 @@ export default class ContractInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      version: props.versions[0].path
+      version: this.props.getSolidityVersions()[0]
     };
   }
 
@@ -15,9 +15,16 @@ export default class ContractInput extends Component {
     this.setState(stateChange);
   };
 
-  onVerify = () => {
-    //TODO validate state or input
-    this.props.onVerify(this.state);
+  onVerify = async () => {
+    //TODO validate data before sending
+    const compilationResult = await this.props.compileCode({
+      contractName: this.state.contractName,
+      contractCode: this.state.contractCode,
+      version: this.state.version,
+      opts: {}
+    });
+    
+    this.props.onCompiled(compilationResult);
   };
 
   createCompilerVersionOption(version) {
@@ -38,7 +45,9 @@ export default class ContractInput extends Component {
               value={this.state.version}
               onChange={this.handleChange}
             >
-              {this.props.versions.map(this.createCompilerVersionOption)}
+              {this.props
+                .getSolidityVersions()
+                .map(this.createCompilerVersionOption)}
             </select>
           </div>
           <div className="pure-u-1-1">

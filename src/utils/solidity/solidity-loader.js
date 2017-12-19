@@ -57,29 +57,28 @@ function generateCompilerInput(sources, opts = {}) {
         enabled: opts.optimizerEnabled || false,
         runs: opts.optimizerRounds || 200
       },
-      libraries: opts.libraries,
       outputSelection: {
         "*": {
-          "*": ["*"]
+          "*": ["evm.deployedBytecode"]
         }
       }
     }
   });
 }
 
-export function compile(sources, compiler, opts = {}){
+export function compile(sources, compiler, opts = {}) {
   const input = generateCompilerInput(sources, opts);
-  const compilationResult = JSON.parse(compiler.compileStandard(input));
-  const contracts = compilationResult.contracts["sourceInput"]
+  const compilationResult = JSON.parse(compiler.compileStandardWrapper(input));
+  const contracts = compilationResult.contracts["sourceInput"];
   const result = {
     errors: compilationResult.errors
-  }
-  if(contracts) {
+  };
+  if (contracts) {
     Object.entries(contracts).forEach(([name, contract]) => {
       result[name] = {
         evm: contract.evm.deployedBytecode.object.slice(0, -68)
-      }
-    })
+      };
+    });
   }
   return result;
 }
